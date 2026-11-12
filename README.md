@@ -16,4 +16,12 @@ import { unitTraits } from '@civ-clone/core-unit/Rules/UnitTraits';
 ruleRegistry.register(...unitTraits('civ1-unit:unit/trait', Carrier, new Carries(Air)));
 ```
 
+A rule that needs its parameters reads the traits themselves: `unit.traits(Carries)` for a unit, or
+`traitsOf(UnitClass, Carries, ruleRegistry)` (from `@civ-clone/core-unit/traits`) for a class. A type may be declared
+with more than one:
+
+```ts
+unit.traits(Carries).some((trait: Carries): boolean => trait.carries(cargo));
+```
+
 Part of the unit traits design (civ-clone/web-renderer#1008).
